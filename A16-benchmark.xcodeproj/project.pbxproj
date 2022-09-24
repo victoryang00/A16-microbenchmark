@@ -14,6 +14,7 @@
 		9D8642ED28DF9B6C0067EDC8 /* A16_benchmarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8642EC28DF9B6C0067EDC8 /* A16_benchmarkTests.swift */; };
 		9D8642F728DF9B6C0067EDC8 /* A16_benchmarkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8642F628DF9B6C0067EDC8 /* A16_benchmarkUITests.swift */; };
 		9D8642F928DF9B6C0067EDC8 /* A16_benchmarkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8642F828DF9B6C0067EDC8 /* A16_benchmarkUITestsLaunchTests.swift */; };
+		9D86430828DF9BA40067EDC8 /* rob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D86430628DF9BA40067EDC8 /* rob.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,9 @@
 		9D8642F228DF9B6C0067EDC8 /* A16-benchmarkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "A16-benchmarkUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8642F628DF9B6C0067EDC8 /* A16_benchmarkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A16_benchmarkUITests.swift; sourceTree = "<group>"; };
 		9D8642F828DF9B6C0067EDC8 /* A16_benchmarkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A16_benchmarkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9D86430528DF9BA40067EDC8 /* A16-benchmark-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "A16-benchmark-Bridging-Header.h"; sourceTree = "<group>"; };
+		9D86430628DF9BA40067EDC8 /* rob.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rob.cpp; sourceTree = "<group>"; };
+		9D86430728DF9BA40067EDC8 /* rob.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rob.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +101,12 @@
 			children = (
 				9D8642DA28DF9B6B0067EDC8 /* A16_benchmarkApp.swift */,
 				9D8642DC28DF9B6B0067EDC8 /* ContentView.swift */,
+				9D86430628DF9BA40067EDC8 /* rob.cpp */,
+				9D86430728DF9BA40067EDC8 /* rob.hpp */,
 				9D8642DE28DF9B6C0067EDC8 /* Assets.xcassets */,
 				9D8642E028DF9B6C0067EDC8 /* A16_benchmark.entitlements */,
 				9D8642E128DF9B6C0067EDC8 /* Preview Content */,
+				9D86430528DF9BA40067EDC8 /* A16-benchmark-Bridging-Header.h */,
 			);
 			path = "A16-benchmark";
 			sourceTree = "<group>";
@@ -197,6 +204,7 @@
 				TargetAttributes = {
 					9D8642D628DF9B6B0067EDC8 = {
 						CreatedOnToolsVersion = 14.0;
+						LastSwiftMigration = 1400;
 					};
 					9D8642E728DF9B6C0067EDC8 = {
 						CreatedOnToolsVersion = 14.0;
@@ -259,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D86430828DF9BA40067EDC8 /* rob.cpp in Sources */,
 				9D8642DD28DF9B6B0067EDC8 /* ContentView.swift in Sources */,
 				9D8642DB28DF9B6B0067EDC8 /* A16_benchmarkApp.swift in Sources */,
 			);
@@ -411,6 +420,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "A16-benchmark/A16_benchmark.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -439,6 +449,8 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "A16-benchmark/A16-benchmark-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -449,6 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "A16-benchmark/A16_benchmark.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -477,6 +490,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "A16-benchmark/A16-benchmark-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

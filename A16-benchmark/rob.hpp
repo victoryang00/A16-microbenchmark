@@ -9,5 +9,11 @@
 #define rob_hpp
 
 #include <stdio.h>
+#include <string>
+
+class HelloWorld{
+public:
+    std::string sayHello();
+}
 
 #endif /* rob_hpp */
