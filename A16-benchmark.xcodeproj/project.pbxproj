@@ -15,6 +15,7 @@
 		9D8642F728DF9B6C0067EDC8 /* A16_benchmarkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8642F628DF9B6C0067EDC8 /* A16_benchmarkUITests.swift */; };
 		9D8642F928DF9B6C0067EDC8 /* A16_benchmarkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8642F828DF9B6C0067EDC8 /* A16_benchmarkUITestsLaunchTests.swift */; };
 		9D86430828DF9BA40067EDC8 /* rob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D86430628DF9BA40067EDC8 /* rob.cpp */; };
+		9D86430A28DFA03C0067EDC8 /* A16_benchmark_wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D86430928DFA03C0067EDC8 /* A16_benchmark_wrapper.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,9 +47,11 @@
 		9D8642F228DF9B6C0067EDC8 /* A16-benchmarkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "A16-benchmarkUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8642F628DF9B6C0067EDC8 /* A16_benchmarkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A16_benchmarkUITests.swift; sourceTree = "<group>"; };
 		9D8642F828DF9B6C0067EDC8 /* A16_benchmarkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A16_benchmarkUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		9D86430528DF9BA40067EDC8 /* A16-benchmark-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "A16-benchmark-Bridging-Header.h"; sourceTree = "<group>"; };
+		9D86430528DF9BA40067EDC8 /* A16_benchmark_wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A16_benchmark_wrapper.h; sourceTree = "<group>"; };
 		9D86430628DF9BA40067EDC8 /* rob.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rob.cpp; sourceTree = "<group>"; };
 		9D86430728DF9BA40067EDC8 /* rob.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rob.hpp; sourceTree = "<group>"; };
+		9D86430928DFA03C0067EDC8 /* A16_benchmark_wrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = A16_benchmark_wrapper.mm; sourceTree = "<group>"; };
+		9D86430B28DFA0BA0067EDC8 /* A16-benchmark-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "A16-benchmark-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +109,9 @@
 				9D8642DE28DF9B6C0067EDC8 /* Assets.xcassets */,
 				9D8642E028DF9B6C0067EDC8 /* A16_benchmark.entitlements */,
 				9D8642E128DF9B6C0067EDC8 /* Preview Content */,
-				9D86430528DF9BA40067EDC8 /* A16-benchmark-Bridging-Header.h */,
+				9D86430528DF9BA40067EDC8 /* A16_benchmark_wrapper.h */,
+				9D86430928DFA03C0067EDC8 /* A16_benchmark_wrapper.mm */,
+				9D86430B28DFA0BA0067EDC8 /* A16-benchmark-Bridging-Header.h */,
 			);
 			path = "A16-benchmark";
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D86430A28DFA03C0067EDC8 /* A16_benchmark_wrapper.mm in Sources */,
 				9D86430828DF9BA40067EDC8 /* rob.cpp in Sources */,
 				9D8642DD28DF9B6B0067EDC8 /* ContentView.swift in Sources */,
 				9D8642DB28DF9B6B0067EDC8 /* A16_benchmarkApp.swift in Sources */,
