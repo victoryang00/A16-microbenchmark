@@ -15,87 +15,80 @@ static int unroll = 1; // TODO
 const char *delim = "\t";
 
 
-static void configure_rdtsc() {
-    if (kpc_set_config(KPC_MASK, g_config)) {
-        printf("kpc_set_config failed\n");
-        return;
-    }
-    
-    if (kpc_force_all_ctrs_set(1)) {
-        printf("kpc_force_all_ctrs_set failed\n");
-        return;
-    }
-    
-    if (kpc_set_counting(KPC_MASK)) {
-        printf("kpc_set_counting failed\n");
-        return;
-    }
-    
-    if (kpc_set_thread_counting(KPC_MASK)) {
-        printf("kpc_set_thread_counting failed\n");
-        return;
-    }
-}
+//static void configure_rdtsc() {
+//    if (kpc_set_config(KPC_MASK, g_config)) {
+//        printf("kpc_set_config failed\n");
+//        return;
+//    }
+//
+//    if (kpc_force_all_ctrs_set(1)) {
+//        printf("kpc_force_all_ctrs_set failed\n");
+//        return;
+//    }
+//
+//    if (kpc_set_counting(KPC_MASK)) {
+//        printf("kpc_set_counting failed\n");
+//        return;
+//    }
+//
+//    if (kpc_set_thread_counting(KPC_MASK)) {
+//        printf("kpc_set_thread_counting failed\n");
+//        return;
+//    }
+//}
 
-static void init_rdtsc() {
-    void *kperf = dlopen(
-                         "/System/Library/PrivateFrameworks/kperf.framework/Versions/A/kperf",
-                         RTLD_LAZY);
-    if (!kperf) {
-        printf("kperf = %p\n", kperf);
-        return;
-    }
-#define F(ret, name, ...)                                                      \
-name = (name##proc *)(dlsym(kperf, #name));                                  \
-if (!name) {                                                                 \
-printf("%s = %p\n", #name, (void *)name);                                  \
-return;                                                                    \
-}
-    KPERF_LIST
-#undef F
-    
-    // TODO: KPC_CLASS_RAWPMU_MASK
-    
-    if (kpc_get_counter_count(KPC_MASK) != COUNTERS_COUNT) {
-        printf("wrong fixed counters count\n");
-        return;
-    }
-    
-    if (kpc_get_config_count(KPC_MASK) != CONFIG_COUNT) {
-        printf("wrong fixed config count\n");
-        return;
-    }
-    
-    // Not all counters can count all things:
-    
-    // CPMU_CORE_CYCLE           {0-7}
-    // CPMU_FED_IC_MISS_DEM      {0-7}
-    // CPMU_FED_ITLB_MISS        {0-7}
-    
-    // CPMU_INST_BRANCH          {3, 4, 5}
-    // CPMU_SYNC_DC_LOAD_MISS    {3, 4, 5}
-    // CPMU_SYNC_DC_STORE_MISS   {3, 4, 5}
-    // CPMU_SYNC_DTLB_MISS       {3, 4, 5}
-    // CPMU_SYNC_BR_ANY_MISP     {3, 4, 5}
-    // CPMU_SYNC_ST_HIT_YNGR_LD  {3, 4, 5}
-    // CPMU_INST_A64             {5}
-    
-    // using "CFGWORD_ALLMODES_MASK" is much noisier
-    g_config[0] = CPMU_CORE_CYCLE | CFGWORD_EL0A64EN_MASK;
-    // configs[3] = CPMU_SYNC_DC_LOAD_MISS | CFGWORD_EL0A64EN_MASK;
-    // configs[4] = CPMU_SYNC_DTLB_MISS | CFGWORD_EL0A64EN_MASK;
-    // configs[5] = CPMU_INST_A64 | CFGWORD_EL0A64EN_MASK;
-    
-    configure_rdtsc();
-}
+//static void init_rdtsc() {
+//    void *kperf = dlopen(
+//                         "/System/Library/PrivateFrameworks/kperf.framework/Versions/A/kperf",
+//                         RTLD_LAZY);
+//    if (!kperf) {
+//        printf("kperf = %p\n", kperf);
+//        return;
+//    }
+//#define F(ret, name, ...)                                                      \
+//name = (name##proc *)(dlsym(kperf, #name));                                  \
+//if (!name) {                                                                 \
+//printf("%s = %p\n", #name, (void *)name);                                  \
+//return;                                                                    \
+//}
+//    KPERF_LIST
+//#undef F
+//
+//    // TODO: KPC_CLASS_RAWPMU_MASK
+//
+//    if (kpc_get_counter_count(KPC_MASK) != COUNTERS_COUNT) {
+//        printf("wrong fixed counters count\n");
+//        return;
+//    }
+//
+//    if (kpc_get_config_count(KPC_MASK) != CONFIG_COUNT) {
+//        printf("wrong fixed config count\n");
+//        return;
+//    }
+//
+//    // Not all counters can count all things:
+//
+//    // CPMU_CORE_CYCLE           {0-7}
+//    // CPMU_FED_IC_MISS_DEM      {0-7}
+//    // CPMU_FED_ITLB_MISS        {0-7}
+//
+//    // CPMU_INST_BRANCH          {3, 4, 5}
+//    // CPMU_SYNC_DC_LOAD_MISS    {3, 4, 5}
+//    // CPMU_SYNC_DC_STORE_MISS   {3, 4, 5}
+//    // CPMU_SYNC_DTLB_MISS       {3, 4, 5}
+//    // CPMU_SYNC_BR_ANY_MISP     {3, 4, 5}
+//    // CPMU_SYNC_ST_HIT_YNGR_LD  {3, 4, 5}
+//    // CPMU_INST_A64             {5}
+//
+//    // using "CFGWORD_ALLMODES_MASK" is much noisier
+//    g_config[0] = CPMU_CORE_CYCLE | CFGWORD_EL0A64EN_MASK;
+//    // configs[3] = CPMU_SYNC_DC_LOAD_MISS | CFGWORD_EL0A64EN_MASK;
+//    // configs[4] = CPMU_SYNC_DTLB_MISS | CFGWORD_EL0A64EN_MASK;
+//    // configs[5] = CPMU_INST_A64 | CFGWORD_EL0A64EN_MASK;
+//
+//    configure_rdtsc();
+//}
 
-static unsigned long long int rdtsc() {
-    if (kpc_get_thread_counters(0, COUNTERS_COUNT, g_counters)) {
-        printf("kpc_get_thread_counters failed\n");
-        return 1;
-    }
-    return g_counters[2];
-}
 
 static void shuffle(int *array, size_t n) {
     if (n > 1) {
@@ -226,7 +219,7 @@ static int add_filler(uint32_t *ibuf, int instr_type, int j) {
 }
 
 void make_routine(uint32_t *ibuf, int icount, int instr_type) {
-//    pthread_jit_write_protect_np(0);
+    pthread_jit_write_protect_np(0);
     int o = 0;
     
     // prologue
@@ -302,7 +295,7 @@ void make_routine(uint32_t *ibuf, int icount, int instr_type) {
         ibuf[o++] = 0xd65f03c0; // ret
     }
     
-//    pthread_jit_write_protect_np(1);
+    pthread_jit_write_protect_np(1);
     sys_icache_invalidate(ibuf, o * 4);
 }
 
@@ -312,7 +305,7 @@ std::string HelloWorld::sayHello(){
     int start_icount = 600;
     int stop_icount = 700;
     int stride_icount = 1;
-    std::string result;
+    std::string result= "";
     
     // TODO: can we force this to run on the fast cores?
     // counters seemingly fail to update if we initialise
@@ -327,7 +320,6 @@ std::string HelloWorld::sayHello(){
         pthread_set_qos_class_self_np(QOS_CLASS_BACKGROUND, 0);
     }
     
-    init_rdtsc();
     uint64_t *data1, *data2;
     init_dbufs(&data1, &data2);
     
@@ -351,13 +343,17 @@ std::string HelloWorld::sayHello(){
         for (int i = 0; i < outer_its; i++) {
             
             // in case we were on the wrong core earlier
-            configure_rdtsc();
+            //            configure_rdtsc();
             
-            long long start = rdtsc();
+            typedef std::chrono::high_resolution_clock Time;
+            typedef std::chrono::nanoseconds ns;
+            typedef std::chrono::duration<float> fsec;
+            auto t0 = Time::now();
+            
             next = routine(next, next, data1, data2, its);
-            long long stop = rdtsc();
-            
-            uint64_t cycles = stop - start;
+            auto t1 = Time::now();
+            fsec fs = t1 - t0;
+            auto cycles = std::chrono::duration_cast<ns>(fs).count();
             
             sum_diff += cycles;
             if (min_diff > cycles) {
@@ -368,10 +364,10 @@ std::string HelloWorld::sayHello(){
             }
         }
         
-       printf("%d%s%.2f%s%.2f%s%.2f\n", icount, delim,
-           0.5 * min_diff / its / unroll, delim,
-           0.5 * sum_diff / its / unroll / outer_its, delim,
-           0.5 * max_diff / its / unroll);
+        printf("%d%s%.2f%s%.2f%s%.2f\n", icount, delim,
+               0.5 * min_diff / its / unroll, delim,
+               0.5 * sum_diff / its / unroll / outer_its, delim,
+               0.5 * max_diff / its / unroll);
     }
     return result;
 }

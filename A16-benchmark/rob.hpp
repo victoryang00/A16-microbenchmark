@@ -16,27 +16,25 @@
 #include <sys/mman.h>
 #include <libkern/OSCacheControl.h>
 // https://gist.github.com/dougallj/5bafb113492047c865c0c8cfbc930155
-
-
-
+extern "C"{
 #define KPERF_LIST                                                             \
-  /*  ret, name, params */                                                     \
-  F(int, kpc_get_counting, void)                                               \
-  F(int, kpc_force_all_ctrs_set, int)                                          \
-  F(int, kpc_set_counting, uint32_t)                                           \
-  F(int, kpc_set_thread_counting, uint32_t)                                    \
-  F(int, kpc_set_config, uint32_t, void *)                                     \
-  F(int, kpc_get_config, uint32_t, void *)                                     \
-  F(int, kpc_set_period, uint32_t, void *)                                     \
-  F(int, kpc_get_period, uint32_t, void *)                                     \
-  F(uint32_t, kpc_get_counter_count, uint32_t)                                 \
-  F(uint32_t, kpc_get_config_count, uint32_t)                                  \
-  F(int, kperf_sample_get, int *)                                              \
-  F(int, kpc_get_thread_counters, int, unsigned int, void *)
+/*  ret, name, params */                                                     \
+F(int, kpc_get_counting, void)                                               \
+F(int, kpc_force_all_ctrs_set, int)                                          \
+F(int, kpc_set_counting, uint32_t)                                           \
+F(int, kpc_set_thread_counting, uint32_t)                                    \
+F(int, kpc_set_config, uint32_t, void *)                                     \
+F(int, kpc_get_config, uint32_t, void *)                                     \
+F(int, kpc_set_period, uint32_t, void *)                                     \
+F(int, kpc_get_period, uint32_t, void *)                                     \
+F(uint32_t, kpc_get_counter_count, uint32_t)                                 \
+F(uint32_t, kpc_get_config_count, uint32_t)                                  \
+F(int, kperf_sample_get, int *)                                              \
+F(int, kpc_get_thread_counters, int, unsigned int, void *)
 
 #define F(ret, name, ...)                                                      \
-  typedef ret name##proc(__VA_ARGS__);                                         \
-  static name##proc *name;
+typedef ret name##proc(__VA_ARGS__);                                         \
+static name##proc *name;
 KPERF_LIST
 #undef F
 
@@ -71,7 +69,7 @@ KPERF_LIST
 #define CONFIG_COUNT 8
 #define KPC_MASK (KPC_CLASS_CONFIGURABLE_MASK | KPC_CLASS_FIXED_MASK)
 
-
+}
 class HelloWorld{
 public:
     std::string sayHello();
