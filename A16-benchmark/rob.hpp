@@ -17,10 +17,7 @@
 #include <libkern/OSCacheControl.h>
 // https://gist.github.com/dougallj/5bafb113492047c865c0c8cfbc930155
 
-static int its = 8192;
-static int outer_its = 64;
-static int unroll = 1; // TODO
-const char *delim = "\t";
+
 
 #define KPERF_LIST                                                             \
   /*  ret, name, params */                                                     \
@@ -73,8 +70,7 @@ KPERF_LIST
 #define COUNTERS_COUNT 10
 #define CONFIG_COUNT 8
 #define KPC_MASK (KPC_CLASS_CONFIGURABLE_MASK | KPC_CLASS_FIXED_MASK)
-uint64_t g_counters[COUNTERS_COUNT];
-uint64_t g_config[COUNTERS_COUNT];
+
 
 class HelloWorld{
 public:
