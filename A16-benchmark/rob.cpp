@@ -7,88 +7,10 @@
 
 #include "rob.hpp"
 
-uint64_t g_counters[COUNTERS_COUNT];
-uint64_t g_config[COUNTERS_COUNT];
 static int its = 8192;
 static int outer_its = 64;
 static int unroll = 1; // TODO
 const char *delim = "\t";
-
-
-//static void configure_rdtsc() {
-//    if (kpc_set_config(KPC_MASK, g_config)) {
-//        printf("kpc_set_config failed\n");
-//        return;
-//    }
-//
-//    if (kpc_force_all_ctrs_set(1)) {
-//        printf("kpc_force_all_ctrs_set failed\n");
-//        return;
-//    }
-//
-//    if (kpc_set_counting(KPC_MASK)) {
-//        printf("kpc_set_counting failed\n");
-//        return;
-//    }
-//
-//    if (kpc_set_thread_counting(KPC_MASK)) {
-//        printf("kpc_set_thread_counting failed\n");
-//        return;
-//    }
-//}
-
-//static void init_rdtsc() {
-//    void *kperf = dlopen(
-//                         "/System/Library/PrivateFrameworks/kperf.framework/Versions/A/kperf",
-//                         RTLD_LAZY);
-//    if (!kperf) {
-//        printf("kperf = %p\n", kperf);
-//        return;
-//    }
-//#define F(ret, name, ...)                                                      \
-//name = (name##proc *)(dlsym(kperf, #name));                                  \
-//if (!name) {                                                                 \
-//printf("%s = %p\n", #name, (void *)name);                                  \
-//return;                                                                    \
-//}
-//    KPERF_LIST
-//#undef F
-//
-//    // TODO: KPC_CLASS_RAWPMU_MASK
-//
-//    if (kpc_get_counter_count(KPC_MASK) != COUNTERS_COUNT) {
-//        printf("wrong fixed counters count\n");
-//        return;
-//    }
-//
-//    if (kpc_get_config_count(KPC_MASK) != CONFIG_COUNT) {
-//        printf("wrong fixed config count\n");
-//        return;
-//    }
-//
-//    // Not all counters can count all things:
-//
-//    // CPMU_CORE_CYCLE           {0-7}
-//    // CPMU_FED_IC_MISS_DEM      {0-7}
-//    // CPMU_FED_ITLB_MISS        {0-7}
-//
-//    // CPMU_INST_BRANCH          {3, 4, 5}
-//    // CPMU_SYNC_DC_LOAD_MISS    {3, 4, 5}
-//    // CPMU_SYNC_DC_STORE_MISS   {3, 4, 5}
-//    // CPMU_SYNC_DTLB_MISS       {3, 4, 5}
-//    // CPMU_SYNC_BR_ANY_MISP     {3, 4, 5}
-//    // CPMU_SYNC_ST_HIT_YNGR_LD  {3, 4, 5}
-//    // CPMU_INST_A64             {5}
-//
-//    // using "CFGWORD_ALLMODES_MASK" is much noisier
-//    g_config[0] = CPMU_CORE_CYCLE | CFGWORD_EL0A64EN_MASK;
-//    // configs[3] = CPMU_SYNC_DC_LOAD_MISS | CFGWORD_EL0A64EN_MASK;
-//    // configs[4] = CPMU_SYNC_DTLB_MISS | CFGWORD_EL0A64EN_MASK;
-//    // configs[5] = CPMU_INST_A64 | CFGWORD_EL0A64EN_MASK;
-//
-//    configure_rdtsc();
-//}
-
 
 static void shuffle(int *array, size_t n) {
     if (n > 1) {
@@ -299,13 +221,13 @@ void make_routine(uint32_t *ibuf, int icount, int instr_type) {
     sys_icache_invalidate(ibuf, o * 4);
 }
 
-std::string HelloWorld::sayHello(){
+std::string ROB::getROB(){
     int test_high_perf_cores = 1;
     int instr_type = 1;
     int start_icount = 600;
     int stop_icount = 700;
     int stride_icount = 1;
-    std::string result= "";
+    
     
     // TODO: can we force this to run on the fast cores?
     // counters seemingly fail to update if we initialise
@@ -368,6 +290,9 @@ std::string HelloWorld::sayHello(){
                0.5 * min_diff / its / unroll, delim,
                0.5 * sum_diff / its / unroll / outer_its, delim,
                0.5 * max_diff / its / unroll);
+        if ( 0.5 * sum_diff / its / unroll / outer_its>ROB_LATENCY_BOUND){
+            return "ROB: " + std::to_string(icount-start_icount);
+        }
     }
-    return result;
+    return "ROB: uncaught";
 }

@@ -68,11 +68,11 @@ KPERF_LIST
 #define COUNTERS_COUNT 10
 #define CONFIG_COUNT 8
 #define KPC_MASK (KPC_CLASS_CONFIGURABLE_MASK | KPC_CLASS_FIXED_MASK)
-
+#define ROB_LATENCY_BOUND 100.
 }
-class HelloWorld{
+class ROB{
 public:
-    std::string sayHello();
+    std::string getROB();
 };
 
 #endif /* rob_hpp */

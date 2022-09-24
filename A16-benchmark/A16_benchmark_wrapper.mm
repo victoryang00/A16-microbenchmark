@@ -9,13 +9,13 @@
 #import "A16_benchmark_wrapper.h"
 #import "rob.hpp"
 
-@implementation HelloWorldWrapper
+@implementation ROBWrapper
 
-- (NSString *) sayHello {
-    HelloWorld helloWorld;
-    std::string helloWorldMessage = helloWorld.sayHello();
+- (NSString *) getROB {
+    ROB rob;
+    std::string ROBMessage = rob.getROB();
     return [NSString
-            stringWithCString:helloWorldMessage.c_str()
+            stringWithCString:ROBMessage.c_str()
             encoding:NSUTF8StringEncoding];
 }
 

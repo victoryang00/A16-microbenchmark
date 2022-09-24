@@ -4,6 +4,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HelloWorldWrapper : NSObject
-- (NSString *) sayHello;
+@interface ROBWrapper : NSObject
+- (NSString *) getROB;
 @end
