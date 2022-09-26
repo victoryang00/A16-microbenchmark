@@ -25,10 +25,10 @@ void pin_thread(int cpu) {
   kern_return_t result =
       thread_policy_set(pthread_mach_thread_np(pthread_self()),
                         THREAD_AFFINITY_POLICY, (thread_policy_t)&policy, 1);
-//  if (result != KERN_SUCCESS) {
-//    perror(("thread_policy_set() failure: " + std::to_string(result)).c_str());
-//    exit(1);
-//  }
+  //  if (result != KERN_SUCCESS) {
+  //    perror(("thread_policy_set() failure: " +
+  //    std::to_string(result)).c_str()); exit(1);
+  //  }
 }
 int cpu_count() {
   int count;
@@ -41,10 +41,10 @@ int sched_getaffinity(pid_t pid, size_t cpu_size, cpu_set_t *cpu_set) {
   int32_t core_count = 0;
   size_t len = sizeof(core_count);
   int ret = sysctlbyname("machdep.cpu.core_count", &core_count, &len, 0, 0);
-//  if (ret) {
-//    printf("error while get core count %d\n", ret);
-//    return -1;
-//  }
+  //  if (ret) {
+  //    printf("error while get core count %d\n", ret);
+  //    return -1;
+  //  }
   cpu_set->count = 0;
   for (int i = 0; i < core_count; i++) {
     cpu_set->count |= (1 << i);
@@ -72,7 +72,7 @@ std::string C2C::getC2C() {
   }
 
   std::map<std::pair<int, int>, std::chrono::nanoseconds> data;
-
+  std::string res("");
   for (size_t i = 0; i < cpus.size(); ++i) {
     for (size_t j = i + 1; j < cpus.size(); ++j) {
 
@@ -112,18 +112,17 @@ std::string C2C::getC2C() {
     }
   }
 
-  std::cout << std::setw(4) << "CPU";
+  res += "C2C: ";
   for (size_t i = 0; i < cpus.size(); ++i) {
-    std::cout << " " << std::setw(4) << cpus[i];
+    res += std::string(" ") + "\t" + std::to_string(cpus[i]);
   }
-  std::cout << std::endl;
-  for (size_t i = 0; i < cpus.size(); ++i) {
-    std::cout << std::setw(4) << cpus[i];
-    for (size_t j = 0; j < cpus.size(); ++j) {
-      std::cout << " " << std::setw(4) << data[{i, j}].count();
-    }
-    std::cout << std::endl;
-  }
+  res += "\n";
 
-  return "C2C: uncaught";
+  for (size_t i = 0; i < cpus.size(); ++i) {
+    res += "\t" + std::to_string(cpus[i]);
+    for (size_t j = 0; j < cpus.size(); ++j) {
+      res += std::string(" ") + "\t" + std::to_string(data[{i, j}].count());
+    }
+  }
+  return res;
 }

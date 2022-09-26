@@ -15,6 +15,7 @@ struct ContentView: View {
                 .foregroundColor(.accentColor)
             Text(ROBWrapper().getROB()).padding()
             Text(C2CWrapper().getC2C()).padding()
+            Text(CpuGpu()).padding()
         }
     }
 }

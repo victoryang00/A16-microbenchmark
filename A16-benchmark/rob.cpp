@@ -9,8 +9,7 @@
 
 static int its = 8192;
 static int outer_its = 64;
-static int unroll = 1; // TODO
-const char *delim = "\t";
+static int unroll = 1;
 
 static void shuffle(int *array, size_t n) {
     if (n > 1) {
@@ -286,9 +285,9 @@ std::string ROB::getROB(){
             }
         }
         
-        printf("%d%s%.2f%s%.2f%s%.2f\n", icount, delim,
-               0.5 * min_diff / its / unroll, delim,
-               0.5 * sum_diff / its / unroll / outer_its, delim,
+        printf("%d%s%.2f%s%.2f%s%.2f\n", icount, "\t",
+               0.5 * min_diff / its / unroll, "\t",
+               0.5 * sum_diff / its / unroll / outer_its, "\t",
                0.5 * max_diff / its / unroll);
         if ( 0.5 * sum_diff / its / unroll / outer_its>ROB_LATENCY_BOUND){
             return "ROB: " + std::to_string(icount-start_icount);
