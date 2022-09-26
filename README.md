@@ -13,3 +13,4 @@ Things we need to know from A16 Everest:
 - [ ] 🚧 CPU to GPU latency
 - [ ] 🚧 HMM
 - [ ] 🚧 Memory latency
+- [ ] 🚧 Pacman Vulnerability

@@ -14,6 +14,7 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text(ROBWrapper().getROB()).padding()
+            Text(C2CWrapper().getC2C()).padding()
         }
     }
 }

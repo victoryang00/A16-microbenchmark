@@ -7,3 +7,6 @@
 @interface ROBWrapper : NSObject
 - (NSString *) getROB;
 @end
+@interface C2CWrapper : NSObject
+- (NSString *) getC2C;
+@end
