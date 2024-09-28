@@ -17,6 +17,9 @@
 		9D86430828DF9BA40067EDC8 /* rob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D86430628DF9BA40067EDC8 /* rob.cpp */; };
 		9D86430A28DFA03C0067EDC8 /* A16_benchmark_wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D86430928DFA03C0067EDC8 /* A16_benchmark_wrapper.mm */; };
 		9D86430E28DFC01A0067EDC8 /* c2c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D86430C28DFC01A0067EDC8 /* c2c.cpp */; };
+		F9496AB52B357CC2007B1AD5 /* CpuANE.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9496AB42B357CC2007B1AD5 /* CpuANE.swift */; };
+		F96FB0882B2D20670081753E /* CpuGpu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96FB0872B2D20670081753E /* CpuGpu.swift */; };
+		F973CD872CA8048700BC9ACA /* GpuGpu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F973CD862CA8048700BC9ACA /* GpuGpu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		9D86430B28DFA0BA0067EDC8 /* A16-benchmark-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "A16-benchmark-Bridging-Header.h"; sourceTree = "<group>"; };
 		9D86430C28DFC01A0067EDC8 /* c2c.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = c2c.cpp; sourceTree = "<group>"; };
 		9D86430D28DFC01A0067EDC8 /* c2c.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = c2c.hpp; sourceTree = "<group>"; };
+		F9496AB42B357CC2007B1AD5 /* CpuANE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CpuANE.swift; sourceTree = "<group>"; };
+		F96FB0872B2D20670081753E /* CpuGpu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CpuGpu.swift; sourceTree = "<group>"; };
+		F973CD862CA8048700BC9ACA /* GpuGpu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpuGpu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,9 @@
 				9D86430B28DFA0BA0067EDC8 /* A16-benchmark-Bridging-Header.h */,
 				9D86430C28DFC01A0067EDC8 /* c2c.cpp */,
 				9D86430D28DFC01A0067EDC8 /* c2c.hpp */,
+				F96FB0872B2D20670081753E /* CpuGpu.swift */,
+				F9496AB42B357CC2007B1AD5 /* CpuANE.swift */,
+				F973CD862CA8048700BC9ACA /* GpuGpu.swift */,
 			);
 			path = "A16-benchmark";
 			sourceTree = "<group>";
@@ -278,10 +287,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D86430E28DFC01A0067EDC8 /* c2c.cpp in Sources */,
+				F96FB0882B2D20670081753E /* CpuGpu.swift in Sources */,
+				F9496AB52B357CC2007B1AD5 /* CpuANE.swift in Sources */,
 				9D86430A28DFA03C0067EDC8 /* A16_benchmark_wrapper.mm in Sources */,
 				9D86430828DF9BA40067EDC8 /* rob.cpp in Sources */,
 				9D8642DD28DF9B6B0067EDC8 /* ContentView.swift in Sources */,
 				9D8642DB28DF9B6B0067EDC8 /* A16_benchmarkApp.swift in Sources */,
+				F973CD872CA8048700BC9ACA /* GpuGpu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,7 @@ struct ContentView: View {
             Text(ROBWrapper().getROB()).padding()
             Text(C2CWrapper().getC2C()).padding()
             Text(CpuGpu()).padding()
+            Text(CpuANE()).padding()
         }
     }
 }

@@ -14,6 +14,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <sys/mman.h>
+#include <assert.h>
 #include <libkern/OSCacheControl.h>
 // https://gist.github.com/dougallj/5bafb113492047c865c0c8cfbc930155
 extern "C"{

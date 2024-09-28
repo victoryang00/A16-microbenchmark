@@ -7,7 +7,6 @@
 
 import Foundation
 import MetalKit
-import TimeSpecification
 /// https://developer.apple.com/documentation/metal/resource_synchronization/synchronizing_cpu_and_gpu_work
 
 // | `Shared`     | *default* on `macOS` buffers, `iOS/tvOS` resources; not available on `macOS` textures. |
@@ -28,19 +27,19 @@ func CpuGpu()->String{
     var myBuffer: MTLBuffer!
     //  1. makeBuffer(length:)
     //
-    var now = TimeSpecification(clock: .system)
+    var now = CACurrentMediaTime()
     myBuffer = device.makeBuffer(length: length, options: [])
-    
+    var now1 = CACurrentMediaTime()
     print(myBuffer.contents())
-    res += "private" + Date(timeIntervalSince1970: now).formatted()
+    res += "private" + (now1 -now)
     //  2. makeBuffer(bytes:)
     //
     var myVector = [Float](repeating: 0, count: count)
-    now = TimeSpecification(clock: .system)
+    now = CACurrentMediaTime()
     myBuffer = device.makeBuffer(bytes: myVector, length: length, options: [])
     withUnsafePointer(to: &myVector) { print($0) }
     print(myBuffer.contents())
-    res += "shared" + Date(timeIntervalSince1970: now).formatted()
+    res += "shared" + now - now1
     //  3. makeBuffer(bytesNoCopy:)
     //
     var memory: UnsafeMutableRawPointer? = nil
